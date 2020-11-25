@@ -1,0 +1,32 @@
+.delete {
+    --color: #8b0000;
+    --background: transparent;
+    --border-style: none;
+    --box-shadow: none;
+    font-size: 22px;
+}
+
+.green {
+    --background: #084326;
+    --background-hover: #084326;
+}
+
+.icon-wrap {
+    float: right;
+    font-size: 30px;
+    color: #8b0000;
+}
+
+.back {
+    --background: transparent;
+    --color: rgb(15, 113, 241);
+    --border-style: none;
+    --box-shadow: none;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 375px) { 
+    .resp {
+        font-size: 15px;
+    }
+}

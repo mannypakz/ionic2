@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><ion-icon name="arrow-back" class="back" (click)="go_back()"></ion-icon>#{{this.das.order_work_date}} Status: New</ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button (click)="upload_das(this.id)" class="ico-upload">
+          <ion-icon name="cloud-upload" class="icons"></ion-icon>
+        </ion-button>
+        <ion-button (click)="show_daspage()">
+            <ion-icon name="create" class="icons dark"></ion-icon>
+        </ion-button>
+        <ion-button (click)="confirm()" class="red">
+            <ion-icon name="trash" class="icons"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+  <ion-row>
+    <ion-col>WO#: {{this.das.order_id}}</ion-col>
+    <ion-col>Start: {{this.das.order_start_feature}}</ion-col>
+    <ion-col>End: {{this.das.order_end_feature}}</ion-col>
+    <ion-col>Target: {{this.das.order_target}}</ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+  <ion-row>
+    <ion-col>Weather: {{this.das.weather}}</ion-col>
+    <ion-col>Wind: {{this.das.wind_speed}} {{this.das.wind_direction}}</ion-col>
+    <ion-col>Humidity: {{this.das.humidity}}</ion-col>
+    <ion-col>Temp: {{this.das.min_temp}} - {{this.das.max_temp}}</ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+  <ion-row>
+    <ion-col>Comment#: {{this.das.comment}}</ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="buttons-group-1">
+          <ion-button class="employees" (click)="show_emp_modal()"><ion-icon name="add-circle" class="spacer"></ion-icon><span class="add-employee">Add Employees</span></ion-button>
+          <ion-button class="herbicide" (click)="show_prod_modal()"><ion-icon name="add-circle" class="spacer"></ion-icon><span class="add-herbicide">Add Herbicide</span></ion-button>
+        </div>
+        <ion-buttons class="buttons-group-2">
+            <ion-button class="employees" (click)="show_emp_modal()"><ion-icon name="add-circle" class="spacer"></ion-icon><span class="add-employee">Add Employees</span></ion-button>
+            <ion-button class="herbicide" (click)="show_prod_modal()"><ion-icon name="add-circle" class="spacer"></ion-icon><span class="add-herbicide">Add Herbicide</span></ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <div *ngIf="this.employees.length">
+    <ion-item>
+      <ion-label>Employees</ion-label>
+    </ion-item>
+    
+    <ion-card *ngFor="let employee of employees">
+      <ion-card-header>
+        <ion-card-subtitle>
+          {{employee.employee.name}}
+          <ion-buttons class="to-right">
+            <ion-button (click)="show_emp_edit(employee.employee.id)">
+                <ion-icon name="create" class="dark icons"></ion-icon>
+            </ion-button>
+            <ion-button (click)="show_delete_component(employee, 'employee')" class="red">
+                <ion-icon name="trash" class="icons"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Item: {{employee.work_order_item_id}}</ion-col>
+            <ion-col>Role:</ion-col>
+            <ion-col>Work Eqp: {{employee.equipment.name}}</ion-col>
+            <ion-col>Travel Eqp: {{employee.travel_equipment.name}}</ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>Job Start: {{this.das.order_work_date}} {{employee.job_start}}</ion-col>
+            <ion-col>Site Start: {{this.das.order_work_date}} {{employee.site_start}}</ion-col>
+            <ion-col>Site End: {{this.das.order_work_date}} {{employee.site_end}}</ion-col>
+            <ion-col>Job End: {{this.das.order_work_date}} {{employee.job_end}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="this.products.length">
+    <ion-item>
+      <ion-label>Products</ion-label>
+    </ion-item>
+
+    <ion-card *ngFor="let product of products">
+      <ion-card-header>
+        <ion-card-subtitle>
+          {{product.das_product.name}}
+          <ion-buttons class="to-right">
+            <ion-button (click)="show_prod_edit(product.das_product.id)">
+              <ion-icon name="create" class="dark icons"></ion-icon>
+            </ion-button>
+            <ion-button (click)="show_delete_component(product, 'product')" class="red">
+              <ion-icon name="trash" class="icons"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Time: {{product.time}}</ion-col>
+            <ion-col>QTY: {{product.quantity}} {{product.qty_label}}</ion-col>
+            <ion-col>Supplier: {{product.supplier}}</ion-col>
+            <ion-col *ngIf="product.other_supplier">Other: {{product.other_supplier}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "centrogen-app-v2",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

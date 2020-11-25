@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Employee</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+          <ion-icon name="close" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form #form="ngForm" (ngSubmit)="update_employee(form)">
+        <ion-item>
+            <ion-label>Employee:</ion-label>
+            <ionic-selectable
+              [(ngModel)]="employee"
+              [items]="employees"
+              itemValueField="id"
+              itemTextField="name"
+              [canSearch]="true"
+              name="employee">
+            </ionic-selectable>
+          </ion-item>
+          
+          <ion-item>
+              <ion-label>Job Start Time:</ion-label>
+                <ion-input readonly [(ngModel)]="job_start_time" 
+                [liIonicTimepicker]="timePickerObj" name="job_start" class="ion-text-right ion-margin-end">
+             </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Site Start Time:</ion-label>
+                <ion-input readonly [(ngModel)]="site_start_time" 
+                [liIonicTimepicker]="timePickerObj" name="site_start" class="ion-text-right ion-margin-end">
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Site End Time:</ion-label>
+                <ion-input readonly [(ngModel)]="site_end_time" 
+                [liIonicTimepicker]="timePickerObj" name="site_end" class="ion-text-right ion-margin-end">
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Job End Time:</ion-label>
+                <ion-input readonly [(ngModel)]="job_end_time" 
+                [liIonicTimepicker]="timePickerObj" name="job_end" class="ion-text-right ion-margin-end">
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Break:</ion-label>
+              <ion-input type="number" [(ngModel)]="brk" name="brk" class="ion-text-right ion-margin-end"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Work Equipment:</ion-label>
+              <ionic-selectable
+                [(ngModel)]="equipment"
+                [items]="equipments"
+                itemValueField="id"
+                itemTextField="name"
+                [canSearch]="true"
+                name="equipment">
+              </ionic-selectable>
+          </ion-item>
+
+          <ion-item>
+              <ion-label>Travel Equipment:</ion-label>
+              <ionic-selectable
+                [(ngModel)]="travelequip"
+                [items]="travelequips"
+                itemValueField="id"
+                itemTextField="name"
+                [canSearch]="true"
+                name="travel_equipment">
+              </ionic-selectable>
+          </ion-item>
+          <input type="hidden" [(ngModel)]="this._id" name="_id">
+          <input type="hidden" [(ngModel)]="this.work_order_item_id" name="work_order_item_id">
+          <ion-button size="default" class="save-employee" expand="block" type="submit">Save</ion-button>
+    </form>
+ 
+</ion-content>

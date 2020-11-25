@@ -1,0 +1,59 @@
+
+.back {
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 24px;
+    color: rgb(15, 113, 241);
+}
+
+.employees, .herbicide {
+    --background: transparent;
+    --background-activated: transparent;
+    --background-hover: transparent;
+    --color: #084326;
+    --border-color: #084326;
+    --border-style: 1px solid;
+    --color-activated: #084326;
+}
+
+.spacer {
+    margin-right: 3%;
+}
+
+.icons {
+    font-size: 30px;
+}
+
+.red {
+    --color: #8b0000;
+}
+
+.to-right {
+    float: right;
+}
+
+.dark {
+    color:#084326;
+}
+
+.buttons-group-2 {
+    display: none;
+}
+
+@media only screen and (max-width: 380px) { 
+    .add-employee, .add-herbicide {
+        font-size: 12px;
+    }
+
+    .buttons-group-1 {
+        display: none;
+    }
+
+    .buttons-group-2 {
+        display: block;
+    }
+} 
+
+.ico-upload {
+    color: #3880ff;
+}

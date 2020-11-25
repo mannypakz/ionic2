@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>DAS Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+          <ion-icon name="close" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="save_product(form)">
+    <ion-item>
+      <ion-label>Batch Number:</ion-label>
+      <ion-input type="text"(ngModel)="batch" name="batch" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Products:</ion-label>
+        <ionic-selectable
+        [(ngModel)]="item"
+        [items]="items"
+        itemValueField="id"
+        itemTextField="name"
+        [canSearch]="true"
+        name="das_product"
+        (onChange)="check($event)">
+      </ionic-selectable>
+    </ion-item>
+    <ion-item>
+      <ion-label>Quantity:</ion-label>
+      <ion-input type="number" (ngModel)="quantity" name="quantity" class="ion-text-right ion-margin-end"></ion-input>{{this.label}}
+    </ion-item>
+    <ion-item>
+        <ion-label>Time:</ion-label>
+        <ion-input readonly [(ngModel)]="time" 
+        [liIonicTimepicker]="timePickerObj" name="time" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Supplied by:</ion-label>
+      <ion-select (ngModel)="supplier" (ionChange)="get_select($event)" name="supplier">
+        <ion-select-option value="Centrogen">Centrogen</ion-select-option>
+        <ion-select-option value="Other">Other</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="this.supplier == 'Other'">
+      <ion-label>Other Supplier</ion-label>
+      <ion-input type="text" (ngModel)="other_supplier" name="other_supplier" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <input type="hidden" [(ngModel)]="this.das_id" name="das_id">
+    <ion-button size="default" class="save-product" expand="block" type="submit">Save</ion-button>
+  </form>
+</ion-content>

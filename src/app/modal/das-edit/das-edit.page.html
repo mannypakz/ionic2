@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit DAS</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+          <ion-icon name="close" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="edit_das(form)">
+    <ion-item>
+      <ion-label position="fixed">Workorder ID:</ion-label>
+      <ion-input type="text" [(ngModel)]="this.das.order_id" name="order_id" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="own-border">
+      <ion-label>Work Date:</ion-label>
+      <li-ionic4-datepicker class="custom" name="order_work_date" [(ngModel)]="this.das.order_work_date" [inputDateConfig]="datePickerObj" class="ion-text-right ion-margin-end"></li-ionic4-datepicker>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Start Feature:</ion-label>
+      <ion-input type="text" [(ngModel)]="this.das.order_start_feature" name="order_start_feature" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="fixed">End Feature:</ion-label>
+        <ion-input type="text" [(ngModel)]="this.das.order_end_feature" name="order_end_feature" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Target:</ion-label>
+      <ion-select [(ngModel)]="this.das.order_target" name="order_target" class="ion-text-right ion-margin-end">
+        <ion-select-option [selected]="true">{{this.das.order_target}}</ion-select-option>
+        <ion-select-option *ngFor="let target of targets">{{target}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Weather:</ion-label>
+      <ion-select [(ngModel)]="this.das.weather" name="weather" class="ion-text-right ion-margin-end">
+        <ion-select-option [selected]="true">{{this.das.weather}}</ion-select-option>
+        <ion-select-option *ngFor="let weath of weather">{{weath}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Wind Speed:</ion-label>
+      <ion-select [(ngModel)]="this.das.wind_speed" name="wind_speed" class="ion-text-right ion-margin-end">
+        <ion-select-option [selected]="true">{{this.das.wind_speed}}</ion-select-option>
+        <ion-select-option *ngFor="let speed of wind_speed">{{speed}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Wind Direction:</ion-label>
+      <ion-select [(ngModel)]="this.das.wind_direction" name="wind_direction" class="ion-text-right ion-margin-end">
+          <ion-select-option [selected]="true">{{this.das.wind_direction}}</ion-select-option>
+          <ion-select-option *ngFor="let direct of wind_direction">{{direct}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Humidity:</ion-label>
+      <ion-input type="text" [(ngModel)]="this.das.humidity" name="humidity" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Min Temp:</ion-label>
+      <ion-input type="text" [(ngModel)]="this.das.min_temp" name="min_temp" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Max Temp:</ion-label>
+        <ion-input type="text" [(ngModel)]="this.das.max_temp" name="max_temp" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Comment:</ion-label>
+        <ion-input type="text" [(ngModel)]="this.das.comment" name="comment" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Delta T:</ion-label>
+      <ion-input type="number" [(ngModel)]="this.das.delta_t" name="delta_t" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Protection Officer:</ion-label>
+      <ion-select [(ngModel)]="this.das.protection_officer" name="protection_officer" class="ion-text-right ion-margin-end">
+        <ion-select-option [selected]="true">{{this.das.protection_officer}}</ion-select-option>
+        <ion-select-option *ngFor="let officer of this.protection_officer">{{officer}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>KM Treated:</ion-label>
+      <ion-input type="number" [(ngModel)]="this.das.km_treated" name="km_treated" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>HA Treated:</ion-label>
+      <ion-input type="number" [(ngModel)]="this.das.ha_treated" name="ha_treated" class="ion-text-right ion-margin-end"></ion-input>
+    </ion-item>
+
+    <ion-button size="default" class="edit-das" [disabled]="form.invalid" expand="block" type="submit">Save</ion-button>
+  </form>
+</ion-content>
